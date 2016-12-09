@@ -1,7 +1,7 @@
 Pastries
 ========
 
-Pastries is an HTML5 game built on a whim after I asked my kids what sort of game we should make. Rather than working on the game rules they wanted (below) I simply grabbed the smallest example I could find of an HTML5 game and ended up making a race between pastries. You have to tap a lot. My kids like to tap.
+Pastries is an HTML5 game built on a whim after I asked my kids what sort of game we should make. Rather than working on the game rules they wanted (below) I simply grabbed the smallest example I could find of an HTML5 game and ended up making a race between pastries. You have to tap a lot. [My kids like to tap](https://twitter.com/philipdurbin/status/807080178631458817).
 
 Play now
 --------
