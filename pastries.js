@@ -8,6 +8,11 @@ var tapCount = 0;
 var debug;
 
 function preload() {
+    // to fit landscape on mobile
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.pageAlignHorizontally = true;
+    game.scale.pageAlignVertically = true;
+
     game.load.image('background', 'assets/white.png');
     game.load.image('bday', 'assets/cake.png');
     game.load.image('cupcake', 'assets/cupcake.png');
