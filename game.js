@@ -40,16 +40,25 @@ function create() {
     bday.scale.setTo(0.2, 0.2);
     bday.inputEnabled = true;
     bday.events.onInputDown.add(onTap, this);
+    game.physics.arcade.enable(bday);
+    bday.enableBody = true;
+    bday.body.collideWorldBounds = true;
 
     var cupcake = game.add.sprite(0, 250, 'cupcake');
     cupcake.scale.setTo(0.2, 0.2);
     cupcake.inputEnabled = true;
     cupcake.events.onInputDown.add(onTap, this);
+    game.physics.arcade.enable(cupcake);
+    cupcake.enableBody = true;
+    cupcake.body.collideWorldBounds = true;
 
     var pie = game.add.sprite(0, 400, 'pie');
     pie.scale.setTo(0.2, 0.2);
     pie.inputEnabled = true;
     pie.events.onInputDown.add(onTap, this);
+    game.physics.arcade.enable(pie);
+    pie.enableBody = true;
+    pie.body.collideWorldBounds = true;
 
 }
 
