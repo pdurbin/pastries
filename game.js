@@ -1,11 +1,17 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
     preload: preload,
-    create: create
+    create: create,
+    update: update
 });
 
 var tapMessage;
 var tapCount = 0;
+var winnerMessage;
 var debug;
+var bday;
+var cupcake;
+var pie;
+var gameover = 0;
 
 function preload() {
     // to fit landscape on mobile
@@ -14,9 +20,11 @@ function preload() {
     game.scale.pageAlignVertically = true;
 
     game.load.image('background', 'assets/white.png');
-    game.load.image('bday', 'assets/cake.png');
+    game.load.image('cake', 'assets/cake.png');
     game.load.image('cupcake', 'assets/cupcake.png');
     game.load.image('pie', 'assets/pie.png');
+    game.load.image('finishLine', 'assets/blackpixel.png');
+
 }
 
 function create() {
@@ -32,38 +40,62 @@ function create() {
         fill: 'black'
     });
 
+    winnerMessage = game.add.text(540, 0, '', {
+        fill: 'black'
+    });
+
     debug = game.add.text(220, 220, '', {
         fill: 'black'
     });
 
-    var bday = game.add.sprite(0, 30, 'bday');
+    bday = game.add.sprite(0, 30, 'cake');
     bday.scale.setTo(0.2, 0.2);
     bday.inputEnabled = true;
     bday.events.onInputDown.add(onTap, this);
     game.physics.arcade.enable(bday);
-    bday.enableBody = true;
-    bday.body.collideWorldBounds = true;
 
-    var cupcake = game.add.sprite(0, 250, 'cupcake');
+    cupcake = game.add.sprite(0, 250, 'cupcake');
     cupcake.scale.setTo(0.2, 0.2);
     cupcake.inputEnabled = true;
     cupcake.events.onInputDown.add(onTap, this);
     game.physics.arcade.enable(cupcake);
-    cupcake.enableBody = true;
-    cupcake.body.collideWorldBounds = true;
 
-    var pie = game.add.sprite(0, 400, 'pie');
+    pie = game.add.sprite(0, 400, 'pie');
     pie.scale.setTo(0.2, 0.2);
     pie.inputEnabled = true;
     pie.events.onInputDown.add(onTap, this);
     game.physics.arcade.enable(pie);
-    pie.enableBody = true;
-    pie.body.collideWorldBounds = true;
 
+    lines = game.add.group();
+    lines.enableBody = true;
+
+    var finishLine = lines.create(750, 0, 'finishLine');
+    finishLine.scale.setTo(10, 800);
+
+}
+
+function update() {
+    game.physics.arcade.collide(bday, lines);
+    game.physics.arcade.collide(cupcake, lines);
+    game.physics.arcade.collide(pie, lines);
+
+    game.physics.arcade.overlap(bday, lines, reachFinish, null, this);
+    game.physics.arcade.overlap(cupcake, lines, reachFinish, null, this);
+    game.physics.arcade.overlap(pie, lines, reachFinish, null, this);
+}
+
+function reachFinish(pastry, lines) {
+    if (gameover != 1) {
+        winnerMessage.text = pastry.key.toUpperCase() + " wins!";
+        gameover = 1;
+    }
 }
 
 // http://phaser.io/docs/2.6.2/Phaser.Events.html#onInputDown
 function onTap(pastry, pointer) {
+    if (gameover == 1) {
+        return;
+    }
     pastry.x += 10;
     tapCount++;
     if (tapCount > 1) {
