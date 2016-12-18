@@ -23,7 +23,8 @@ function preload() {
     game.load.image('cake', 'assets/cake.png');
     game.load.image('cupcake', 'assets/cupcake.png');
     game.load.image('pie', 'assets/pie.png');
-    game.load.image('finishLine', 'assets/blackpixel.png');
+    //game.load.image('finishLine', 'assets/blackpixel.png');
+    game.load.image('finishLine', 'assets/rainbow.png');
 
 }
 
