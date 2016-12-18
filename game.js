@@ -93,10 +93,6 @@ function reachFinish(pastry, lines) {
 
 // http://phaser.io/docs/2.6.2/Phaser.Events.html#onInputDown
 function onTap(pastry, pointer) {
-    if (gameover == 1) {
-        return;
-    }
-    pastry.x += 10;
     tapCount++;
     if (tapCount > 1) {
         tapMessage.text = "You've tapped " + tapCount + " times!";
@@ -104,5 +100,9 @@ function onTap(pastry, pointer) {
     else {
         tapMessage.text = "You've tapped " + tapCount + " time!";
     }
+    if (gameover == 1) {
+        return;
+    }
+    pastry.x += 10;
     //debug.text = pastry.frameName + " at " + pointer.position;
 }
